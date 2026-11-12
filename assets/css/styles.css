@@ -463,28 +463,29 @@ a { color: inherit; }
   font-size: 20px;
 }
 
-.ls-unit-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
-@media (min-width: 680px) { .ls-unit-grid { grid-template-columns: 1fr 1fr; } }
+.ls-unit-grid-wrap { max-width: 640px; margin: 0 auto; }
+.ls-unit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 480px) { .ls-unit-grid { grid-template-columns: 1fr 1fr; gap: 10px; } }
 
 .ls-unit-tile {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 220px;
-  padding: 36px 24px;
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  border-top: 5px solid var(--accent);
-  border-radius: 28px;
+  min-height: 110px;
+  padding: 18px 14px;
+  background: #0A0B10;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--accent);
+  border-radius: 18px;
   cursor: pointer;
-  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+  transition: transform .15s ease, border-color .15s ease, background .15s ease;
 }
-.ls-unit-tile:hover { transform: translateY(-5px); background: var(--bg-raise); }
-.ls-unit-tile.ls-tab-active { background: var(--bg-raise); box-shadow: 0 0 0 2px var(--accent); }
-.ls-unit-tile-wordmark { height: 92px; width: auto; max-width: 90%; object-fit: contain; }
-@media (min-width: 680px) { .ls-unit-tile-wordmark { height: 110px; } }
+.ls-unit-tile:hover { transform: translateY(-3px); background: #000; }
+.ls-unit-tile.ls-tab-active { background: #000; box-shadow: 0 0 0 2px var(--accent); }
+.ls-unit-tile-wordmark { height: 40px; width: auto; max-width: 88%; object-fit: contain; }
+@media (min-width: 480px) { .ls-unit-tile-wordmark { height: 50px; } }
 
-.ls-unit-panel { background: var(--card); border: 1px solid var(--card-border); border-radius: 24px; padding: 32px 28px; margin-top: 20px; }
+.ls-unit-panel { max-width: 640px; margin: 20px auto 0; background: #0A0B10; border: 1px solid var(--border); border-radius: 24px; padding: 32px 28px; }
 
 .ls-book-chapter { margin-bottom: 20px; }
 .ls-book-chapter:last-child { margin-bottom: 0; }
