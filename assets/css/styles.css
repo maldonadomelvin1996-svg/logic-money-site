@@ -1,0 +1,437 @@
+/* Logic Money — sitio de la compañía
+   Misma paleta/tipografía que el manual digital (fondo negro, acento
+   dorado, Helvetica Neue) pero con un lenguaje visual propio: secciones
+   a pantalla completa, tipografía enorme, mucho aire — inspirado en los
+   landing pages de producto de Apple. */
+
+:root {
+  --bg: #050609;
+  --bg-raise: #0C0E14;
+  --card: #11131A;
+  --card-border: rgba(243,241,234,0.1);
+  --border: rgba(243,241,234,0.14);
+  --border-strong: rgba(243,241,234,0.26);
+  --text: #F3F1EA;
+  --text-mid: rgba(243,241,234,0.68);
+  --text-faint: rgba(243,241,234,0.44);
+  --gold: #E7A63C;
+  --gold-soft: rgba(231,166,60,0.14);
+  --good: #3ED88E;
+  --good-soft: rgba(62,216,142,0.12);
+  --warn: #FF6A52;
+  --teal: #2FD6D9;
+  --blue: #3B82F6;
+  --blue-soft: rgba(59,130,246,0.14);
+  --max: 1120px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+.ls-wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 22px;
+}
+
+/* ---------- Header ---------- */
+.ls-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: rgba(5,6,9,0.72);
+  backdrop-filter: blur(16px) saturate(140%);
+  border-bottom: 1px solid var(--border);
+}
+.ls-header-logo { height: 28px; width: auto; display: block; }
+.ls-header-nav { display: none; align-items: center; gap: 28px; font-size: 14px; font-weight: 600; }
+.ls-header-nav a { text-decoration: none; color: var(--text-mid); transition: color .15s; }
+.ls-header-nav a:hover { color: var(--text); }
+@media (min-width: 860px) { .ls-header-nav { display: flex; } }
+
+.ls-header-cta {
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1A1200;
+  background: var(--gold);
+  padding: 9px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.ls-menu-btn {
+  display: inline-flex;
+  width: 38px; height: 38px;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  color: var(--text);
+  font-size: 16px;
+  cursor: pointer;
+}
+@media (min-width: 860px) { .ls-menu-btn { display: none; } }
+
+.ls-mobile-nav {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 49;
+  background: var(--bg);
+  padding: 90px 28px 40px;
+}
+.ls-mobile-nav.ls-open { display: flex; flex-direction: column; gap: 26px; }
+.ls-mobile-nav a { font-size: 26px; font-weight: 700; text-decoration: none; color: var(--text); letter-spacing: -0.01em; }
+.ls-mobile-nav .ls-header-cta { align-self: flex-start; margin-top: 10px; }
+
+/* ---------- Sections / reveal ---------- */
+.ls-section { padding: 120px 0; position: relative; }
+.ls-section-tight { padding: 80px 0; }
+.ls-reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+.ls-reveal.ls-in { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .ls-reveal { opacity: 1; transform: none; transition: none; } }
+
+.ls-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin: 0 0 14px;
+}
+.ls-h1 {
+  font-size: clamp(40px, 9vw, 92px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  margin: 0 0 20px;
+}
+.ls-h2 {
+  font-size: clamp(30px, 5.5vw, 54px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.06;
+  margin: 0 0 18px;
+}
+.ls-h3 { font-size: clamp(20px, 3vw, 26px); font-weight: 700; letter-spacing: -0.01em; margin: 0 0 10px; }
+.ls-lead {
+  font-size: clamp(17px, 2.2vw, 22px);
+  color: var(--text-mid);
+  line-height: 1.5;
+  max-width: 640px;
+  margin: 0 0 34px;
+}
+.ls-p { font-size: 16px; color: var(--text-mid); line-height: 1.65; margin: 0 0 16px; }
+.ls-center { text-align: center; margin-left: auto; margin-right: auto; }
+
+/* ---------- Hero ---------- */
+.ls-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px 22px 80px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(231,166,60,0.16), transparent 55%),
+    radial-gradient(circle at 85% 85%, rgba(47,214,217,0.08), transparent 45%);
+}
+.ls-hero-logo { height: 46px; width: auto; margin-bottom: 36px; }
+.ls-hero-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 10px; }
+
+/* ---------- Buttons ---------- */
+.ls-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 999px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 16px 30px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .08s, opacity .15s, background .15s;
+  min-height: 44px;
+}
+.ls-btn:active { transform: scale(0.97); }
+.ls-btn-primary { background: var(--gold); color: #1A1200; box-shadow: 0 10px 30px -8px rgba(231,166,60,0.5); }
+.ls-btn-primary:hover { opacity: 0.9; }
+.ls-btn-ghost { background: rgba(255,255,255,0.06); color: var(--text); border: 1px solid var(--border-strong); }
+.ls-btn-ghost:hover { background: rgba(255,255,255,0.1); }
+.ls-btn-sm { padding: 11px 20px; font-size: 14px; }
+.ls-btn-block { width: 100%; }
+
+/* ---------- Two big category tiles ---------- */
+.ls-paths { display: grid; gap: 22px; grid-template-columns: 1fr; }
+@media (min-width: 760px) { .ls-paths { grid-template-columns: 1fr 1fr; } }
+.ls-path-card {
+  display: block;
+  text-decoration: none;
+  color: var(--text);
+  background: linear-gradient(160deg, var(--bg-raise), #080910);
+  border: 1px solid var(--card-border);
+  border-radius: 28px;
+  padding: 44px 32px;
+  min-height: 320px;
+  position: relative;
+  overflow: hidden;
+  transition: transform .25s ease, border-color .25s ease;
+}
+.ls-path-card:hover { transform: translateY(-6px); border-color: var(--border-strong); }
+.ls-path-card-glow { position: absolute; inset: -40% -40% auto auto; width: 70%; height: 70%; border-radius: 50%; filter: blur(60px); opacity: 0.5; pointer-events: none; }
+.ls-path-card-asesoria .ls-path-card-glow { background: var(--gold); }
+.ls-path-card-educacion .ls-path-card-glow { background: var(--teal); }
+.ls-path-card-tag { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); margin-bottom: 14px; }
+.ls-path-card-title { font-size: clamp(26px, 4vw, 34px); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; }
+.ls-path-card-desc { font-size: 15px; color: var(--text-mid); line-height: 1.55; margin-bottom: 26px; max-width: 420px; }
+.ls-path-card-arrow { font-size: 15px; font-weight: 700; color: var(--gold); }
+
+/* ---------- Feature grid ---------- */
+.ls-grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .ls-grid-2 { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 860px) { .ls-grid-3 { grid-template-columns: 1fr 1fr 1fr; } }
+@media (min-width: 860px) { .ls-grid-4 { grid-template-columns: repeat(4, 1fr); } }
+
+.ls-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 22px;
+  padding: 30px 26px;
+}
+.ls-card-icon { font-size: 30px; margin-bottom: 16px; display: inline-block; }
+.ls-card h3 { font-size: 19px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; }
+.ls-card p { font-size: 14.5px; color: var(--text-mid); line-height: 1.6; margin: 0; }
+
+/* ---------- Service / pricing cards ---------- */
+.ls-service {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 34px 28px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.ls-service-title { font-size: 21px; font-weight: 800; margin: 0 0 8px; letter-spacing: -0.01em; }
+.ls-service-price { font-size: 15px; font-weight: 700; color: var(--gold); margin: 0 0 18px; }
+.ls-service-list { list-style: none; padding: 0; margin: 0 0 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.ls-service-list li { font-size: 14.5px; color: var(--text-mid); line-height: 1.5; padding-left: 22px; position: relative; }
+.ls-service-list li::before { content: "✓"; position: absolute; left: 0; color: var(--good); font-weight: 700; }
+
+/* ---------- Placeholder tag ---------- */
+.ls-placeholder {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--warn);
+  background: rgba(255,106,82,0.12);
+  border: 1px dashed rgba(255,106,82,0.5);
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* ---------- Calculators ---------- */
+.ls-calc { background: var(--card); border: 1px solid var(--card-border); border-radius: 24px; padding: 30px 26px; }
+.ls-calc-field { margin-bottom: 18px; }
+.ls-calc-label { display: block; font-size: 13.5px; font-weight: 600; color: var(--text-mid); margin-bottom: 8px; }
+.ls-calc-input {
+  width: 100%;
+  min-height: 48px;
+  background: var(--bg-raise);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 10px 14px;
+  outline: none;
+}
+.ls-calc-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(231,166,60,0.18); }
+.ls-calc-results { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--border); display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+.ls-calc-stat-label { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-faint); margin-bottom: 4px; }
+.ls-calc-stat-value { font-size: 24px; font-weight: 800; letter-spacing: -0.01em; color: var(--gold); }
+.ls-calc-note { font-size: 12.5px; color: var(--text-faint); margin-top: 16px; line-height: 1.5; }
+
+/* ---------- Tabs (used for calculators / módulos) ---------- */
+.ls-tabs { display: flex; gap: 10px; margin-bottom: 26px; flex-wrap: wrap; }
+.ls-tab-btn {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  color: var(--text-mid);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 11px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.ls-tab-btn.ls-tab-active { background: var(--gold-soft); border-color: var(--gold); color: var(--gold); }
+.ls-tab-panel { display: none; }
+.ls-tab-panel.ls-tab-panel-active { display: block; }
+
+/* ---------- Curriculum accordion ---------- */
+.ls-accordion-item { border-bottom: 1px solid var(--border); }
+.ls-accordion-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 22px 2px;
+  cursor: pointer;
+  text-align: left;
+}
+.ls-accordion-title { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+.ls-accordion-sub { font-size: 13px; color: var(--text-faint); margin-top: 4px; font-weight: 400; }
+.ls-accordion-icon { flex-shrink: 0; font-size: 20px; color: var(--text-faint); transition: transform .2s; }
+.ls-accordion-item.ls-open .ls-accordion-icon { transform: rotate(45deg); color: var(--gold); }
+.ls-accordion-body { display: none; padding: 0 2px 22px; }
+.ls-accordion-item.ls-open .ls-accordion-body { display: block; }
+.ls-lesson-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.ls-lesson-list li { font-size: 14.5px; color: var(--text-mid); display: flex; align-items: center; gap: 10px; }
+.ls-lesson-list li::before { content: "▸"; color: var(--teal); font-size: 12px; }
+
+/* ---------- Pricing row (libro/curso) ---------- */
+.ls-product {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+@media (min-width: 760px) { .ls-product { grid-template-columns: 0.9fr 1.1fr; } }
+.ls-product-media {
+  background: var(--bg-raise);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  aspect-ratio: 3/4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-faint);
+  font-size: 14px;
+  text-align: center;
+  padding: 20px;
+}
+.ls-product-price { font-size: 32px; font-weight: 800; color: var(--gold); margin: 10px 0 22px; }
+
+/* ---------- Testimonials ---------- */
+.ls-quote { background: var(--card); border: 1px solid var(--card-border); border-radius: 22px; padding: 28px 24px; height: 100%; }
+.ls-quote p { font-size: 15.5px; color: var(--text); line-height: 1.6; margin: 0 0 18px; }
+.ls-quote-author { font-size: 13px; font-weight: 700; color: var(--text-faint); }
+
+/* ---------- FAQ ---------- */
+.ls-faq-item { border-bottom: 1px solid var(--border); }
+.ls-faq-btn { width: 100%; background: none; border: none; color: var(--text); font-family: inherit; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 24px 2px; cursor: pointer; text-align: left; font-size: 17px; font-weight: 700; }
+.ls-faq-icon { font-size: 22px; color: var(--text-faint); transition: transform .2s; flex-shrink: 0; }
+.ls-faq-item.ls-open .ls-faq-icon { transform: rotate(45deg); color: var(--gold); }
+.ls-faq-body { display: none; padding: 0 2px 24px; font-size: 15px; color: var(--text-mid); line-height: 1.6; max-width: 700px; }
+.ls-faq-item.ls-open .ls-faq-body { display: block; }
+
+/* ---------- Newsletter ---------- */
+.ls-newsletter {
+  background: linear-gradient(135deg, rgba(231,166,60,0.14), rgba(47,214,217,0.08));
+  border: 1px solid var(--card-border);
+  border-radius: 28px;
+  padding: 50px 36px;
+  text-align: center;
+}
+.ls-form-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 22px; max-width: 460px; margin-left: auto; margin-right: auto; }
+.ls-form-row input[type="email"] {
+  flex: 1;
+  min-width: 220px;
+  min-height: 50px;
+  background: var(--bg-raise);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 15px;
+  padding: 0 20px;
+  outline: none;
+}
+.ls-form-note { font-size: 12.5px; color: var(--text-faint); margin-top: 14px; }
+.ls-form-success { display: none; color: var(--good); font-weight: 700; margin-top: 16px; }
+
+/* ---------- Calendly embed wrapper ---------- */
+.ls-calendly-embed {
+  background: var(--bg-raise);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-faint);
+  font-size: 14px;
+  text-align: center;
+  padding: 30px;
+}
+
+/* ---------- Manual promo card ---------- */
+.ls-promo {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 26px;
+  flex-wrap: wrap;
+}
+.ls-promo img { width: 120px; border-radius: 12px; flex-shrink: 0; }
+.ls-promo-body { flex: 1; min-width: 200px; }
+
+/* ---------- Footer ---------- */
+.ls-footer { padding: 70px 0 40px; border-top: 1px solid var(--border); }
+.ls-footer-grid { display: grid; gap: 34px; grid-template-columns: 1fr; margin-bottom: 40px; }
+@media (min-width: 700px) { .ls-footer-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
+.ls-footer-logo { height: 24px; margin-bottom: 14px; }
+.ls-footer-col h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-faint); margin: 0 0 16px; }
+.ls-footer-col a, .ls-footer-col p { display: block; font-size: 14.5px; color: var(--text-mid); text-decoration: none; margin-bottom: 10px; line-height: 1.5; }
+.ls-footer-col a:hover { color: var(--text); }
+.ls-footer-bottom { display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center; font-size: 12.5px; color: var(--text-faint); padding-top: 26px; border-top: 1px solid var(--border); }
+.ls-footer-legal { display: flex; gap: 18px; flex-wrap: wrap; }
+.ls-footer-legal a { color: var(--text-faint); text-decoration: none; }
+.ls-footer-legal a:hover { color: var(--text-mid); }
+.ls-footer-disclaimer { font-size: 12px; color: var(--text-faint); line-height: 1.6; max-width: 720px; margin: 0 0 26px; }
+
+/* ---------- Simple legal pages ---------- */
+.ls-legal { padding: 150px 0 100px; max-width: 760px; }
+.ls-legal h2 { font-size: 26px; font-weight: 800; margin: 36px 0 12px; }
+.ls-legal p, .ls-legal li { font-size: 15px; color: var(--text-mid); line-height: 1.7; }
