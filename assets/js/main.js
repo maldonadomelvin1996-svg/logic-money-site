@@ -54,6 +54,24 @@
     });
   });
 
+  /* ---------- Unit switcher (libro.html: 4 cards, click to expand) ---------- */
+  document.querySelectorAll("[data-unit-switcher]").forEach(function (switcher) {
+    var cards = switcher.querySelectorAll("[data-unit-card]");
+    cards.forEach(function (card) {
+      var head = card.querySelector("[data-unit-head]");
+      head.addEventListener("click", function () {
+        var wasActive = card.classList.contains("ls-active");
+        cards.forEach(function (c) { c.classList.remove("ls-active"); });
+        if (!wasActive) {
+          card.classList.add("ls-active");
+          switcher.classList.add("has-active");
+        } else {
+          switcher.classList.remove("has-active");
+        }
+      });
+    });
+  });
+
   /* ---------- Tabs ---------- */
   document.querySelectorAll("[data-tabs]").forEach(function (group) {
     var btns = group.querySelectorAll("[data-tab-btn]");
