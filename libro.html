@@ -43,11 +43,26 @@
     <div class="ls-wrap">
       <div class="ls-unit-switcher-wrap ls-reveal">
         <div class="ls-unit-switcher" data-unit-switcher>
-      <div class="ls-unit-card2" data-unit-card>
-        <button class="ls-unit-head" data-unit-head style="--accent:var(--blue)">
+          <div class="ls-unit-nav">
+        <button class="ls-unit-navitem" data-unit-head="presupuesto" style="--accent:var(--blue)">
           <img class="ls-unit-tile-wordmark" src="assets/img/flows/presupuesto.png" alt="Presupuesto">
         </button>
-        <div class="ls-unit-body" data-unit-body>
+        <button class="ls-unit-navitem" data-unit-head="estabilidad" style="--accent:var(--gold)">
+          <img class="ls-unit-tile-wordmark" src="assets/img/flows/estabilidad.png" alt="Estabilidad">
+        </button>
+        <button class="ls-unit-navitem" data-unit-head="crecimiento" style="--accent:var(--good)">
+          <img class="ls-unit-tile-wordmark" src="assets/img/flows/crecimiento.png" alt="Crecimiento">
+        </button>
+        <button class="ls-unit-navitem" data-unit-head="planificacion" style="--accent:var(--warn)">
+          <img class="ls-unit-tile-wordmark" src="assets/img/flows/planificacion.png" alt="Planificación">
+        </button>
+          </div>
+          <div class="ls-unit-content">
+        <div class="ls-unit-contentpanel" data-unit-panel="presupuesto" style="--accent:var(--blue)">
+          <div class="ls-unit-content-head">
+            <img class="ls-unit-content-wordmark" src="assets/img/flows/presupuesto.png" alt="Presupuesto">
+            <button class="ls-btn ls-btn-ghost ls-btn-sm" data-unit-back type="button">← Las 4 categorías</button>
+          </div>
             <div class="ls-book-chapter">
               <p class="ls-book-chapter-title">Ingresos</p>
               <ul class="ls-book-lesson-list">
@@ -79,12 +94,11 @@
               </ul>
             </div>
         </div>
-      </div>
-      <div class="ls-unit-card2" data-unit-card>
-        <button class="ls-unit-head" data-unit-head style="--accent:var(--gold)">
-          <img class="ls-unit-tile-wordmark" src="assets/img/flows/estabilidad.png" alt="Estabilidad">
-        </button>
-        <div class="ls-unit-body" data-unit-body>
+        <div class="ls-unit-contentpanel" data-unit-panel="estabilidad" style="--accent:var(--gold)">
+          <div class="ls-unit-content-head">
+            <img class="ls-unit-content-wordmark" src="assets/img/flows/estabilidad.png" alt="Estabilidad">
+            <button class="ls-btn ls-btn-ghost ls-btn-sm" data-unit-back type="button">← Las 4 categorías</button>
+          </div>
             <div class="ls-book-chapter">
               <p class="ls-book-chapter-title">Ahorro</p>
               <ul class="ls-book-lesson-list">
@@ -121,12 +135,11 @@
               </ul>
             </div>
         </div>
-      </div>
-      <div class="ls-unit-card2" data-unit-card>
-        <button class="ls-unit-head" data-unit-head style="--accent:var(--good)">
-          <img class="ls-unit-tile-wordmark" src="assets/img/flows/crecimiento.png" alt="Crecimiento">
-        </button>
-        <div class="ls-unit-body" data-unit-body>
+        <div class="ls-unit-contentpanel" data-unit-panel="crecimiento" style="--accent:var(--good)">
+          <div class="ls-unit-content-head">
+            <img class="ls-unit-content-wordmark" src="assets/img/flows/crecimiento.png" alt="Crecimiento">
+            <button class="ls-btn ls-btn-ghost ls-btn-sm" data-unit-back type="button">← Las 4 categorías</button>
+          </div>
             <div class="ls-book-chapter">
               <p class="ls-book-chapter-title">Conceptos financieros</p>
               <ul class="ls-book-lesson-list">
@@ -171,12 +184,11 @@
               </ul>
             </div>
         </div>
-      </div>
-      <div class="ls-unit-card2" data-unit-card>
-        <button class="ls-unit-head" data-unit-head style="--accent:var(--warn)">
-          <img class="ls-unit-tile-wordmark" src="assets/img/flows/planificacion.png" alt="Planificación">
-        </button>
-        <div class="ls-unit-body" data-unit-body>
+        <div class="ls-unit-contentpanel" data-unit-panel="planificacion" style="--accent:var(--warn)">
+          <div class="ls-unit-content-head">
+            <img class="ls-unit-content-wordmark" src="assets/img/flows/planificacion.png" alt="Planificación">
+            <button class="ls-btn ls-btn-ghost ls-btn-sm" data-unit-back type="button">← Las 4 categorías</button>
+          </div>
             <div class="ls-book-chapter">
               <p class="ls-book-chapter-title">Mapa Financiero</p>
               <ul class="ls-book-lesson-list">
@@ -191,7 +203,7 @@
               </ul>
             </div>
         </div>
-      </div>
+          </div>
         </div>
       </div>
     </div>

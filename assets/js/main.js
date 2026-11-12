@@ -54,21 +54,27 @@
     });
   });
 
-  /* ---------- Unit switcher (libro.html: 4 cards, click to expand) ---------- */
+  /* ---------- Unit switcher (libro.html: 4 cards -> sidebar + expanded content) ---------- */
   document.querySelectorAll("[data-unit-switcher]").forEach(function (switcher) {
-    var cards = switcher.querySelectorAll("[data-unit-card]");
-    cards.forEach(function (card) {
-      var head = card.querySelector("[data-unit-head]");
-      head.addEventListener("click", function () {
-        var wasActive = card.classList.contains("ls-active");
-        cards.forEach(function (c) { c.classList.remove("ls-active"); });
-        if (!wasActive) {
-          card.classList.add("ls-active");
-          switcher.classList.add("has-active");
-        } else {
-          switcher.classList.remove("has-active");
-        }
-      });
+    var heads = switcher.querySelectorAll("[data-unit-head]");
+    var panels = switcher.querySelectorAll("[data-unit-panel]");
+    var backBtns = switcher.querySelectorAll("[data-unit-back]");
+
+    function setActive(slug) {
+      heads.forEach(function (h) { h.classList.toggle("ls-active", h.getAttribute("data-unit-head") === slug); });
+      panels.forEach(function (p) { p.classList.toggle("ls-active", p.getAttribute("data-unit-panel") === slug); });
+      switcher.classList.add("has-active");
+    }
+    function clearActive() {
+      heads.forEach(function (h) { h.classList.remove("ls-active"); });
+      panels.forEach(function (p) { p.classList.remove("ls-active"); });
+      switcher.classList.remove("has-active");
+    }
+    heads.forEach(function (h) {
+      h.addEventListener("click", function () { setActive(h.getAttribute("data-unit-head")); });
+    });
+    backBtns.forEach(function (b) {
+      b.addEventListener("click", function (e) { e.preventDefault(); clearActive(); });
     });
   });
 
