@@ -144,10 +144,11 @@ a { color: inherit; }
   font-size: clamp(17px, 2.2vw, 22px);
   color: var(--text-mid);
   line-height: 1.5;
+  letter-spacing: -0.012em;
   max-width: 640px;
   margin: 0 0 34px;
 }
-.ls-p { font-size: 16px; color: var(--text-mid); line-height: 1.65; margin: 0 0 16px; }
+.ls-p { font-size: 16px; color: var(--text-mid); line-height: 1.65; letter-spacing: -0.008em; margin: 0 0 16px; }
 .ls-center { text-align: center; margin-left: auto; margin-right: auto; }
 
 /* ---------- Hero ----------
@@ -214,29 +215,58 @@ a { color: inherit; }
 .ls-btn-block { width: 100%; }
 
 /* ---------- Two big category tiles ---------- */
-.ls-paths { display: grid; gap: 22px; grid-template-columns: 1fr; }
-@media (min-width: 760px) { .ls-paths { grid-template-columns: 1fr 1fr; } }
-.ls-path-card {
-  display: block;
-  text-decoration: none;
-  color: var(--text);
-  background: linear-gradient(160deg, var(--bg-raise), #080910);
-  border: 1px solid var(--card-border);
+/* ---------- Editorial feature block (texto + imagen oversized, estilo Apple) ---------- */
+.ls-editorial { display: flex; flex-direction: column; gap: 56px; }
+.ls-editorial-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: center;
+}
+@media (min-width: 820px) { .ls-editorial-row { grid-template-columns: 1fr 1fr; gap: 50px; } }
+.ls-editorial-row-reverse .ls-editorial-media { order: -1; }
+@media (min-width: 820px) { .ls-editorial-row-reverse .ls-editorial-media { order: 2; } }
+
+.ls-editorial-tag { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); margin-bottom: 14px; }
+.ls-editorial-title { font-size: clamp(28px, 4.2vw, 42px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 16px; }
+.ls-editorial-desc { font-size: 16px; color: var(--text-mid); line-height: 1.6; letter-spacing: -0.008em; margin-bottom: 26px; max-width: 440px; }
+
+.ls-editorial-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
   border-radius: 28px;
-  padding: 44px 32px;
-  min-height: 320px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
   position: relative;
   overflow: hidden;
-  transition: transform .25s ease, border-color .25s ease;
 }
-.ls-path-card:hover { transform: translateY(-6px); border-color: var(--border-strong); }
-.ls-path-card-glow { position: absolute; inset: -40% -40% auto auto; width: 70%; height: 70%; border-radius: 50%; filter: blur(60px); opacity: 0.5; pointer-events: none; }
-.ls-path-card-asesoria .ls-path-card-glow { background: var(--gold); }
-.ls-path-card-educacion .ls-path-card-glow { background: var(--teal); }
-.ls-path-card-tag { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); margin-bottom: 14px; }
-.ls-path-card-title { font-size: clamp(26px, 4vw, 34px); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; }
-.ls-path-card-desc { font-size: 15px; color: var(--text-mid); line-height: 1.55; margin-bottom: 26px; max-width: 420px; }
-.ls-path-card-arrow { font-size: 15px; font-weight: 700; color: var(--gold); }
+.ls-editorial-glyph { font-size: 120px; line-height: 1; filter: drop-shadow(0 18px 24px rgba(0,0,0,0.5)); }
+@media (min-width: 640px) { .ls-editorial-glyph { font-size: 160px; } }
+.ls-editorial-asesoria { border-top: 4px solid var(--gold); }
+.ls-editorial-educacion { border-top: 4px solid var(--teal); }
+
+/* ---------- Highlights carousel (banda mist, estilo Apple) ---------- */
+.ls-highlights-scroll {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 4px 4px 10px;
+  margin: 0 -4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.ls-highlights-scroll::-webkit-scrollbar { display: none; }
+.ls-highlight-card {
+  flex: 0 0 78%;
+  scroll-snap-align: center;
+}
+@media (min-width: 640px) { .ls-highlight-card { flex: 0 0 300px; } }
+.ls-highlights-dots { display: flex; justify-content: center; gap: 8px; margin-top: 22px; }
+.ls-highlights-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border-strong); transition: background .2s ease, transform .2s ease; }
+.ls-highlights-dot.ls-active { background: var(--gold); transform: scale(1.35); }
 
 /* ---------- Feature grid ---------- */
 .ls-grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
@@ -272,19 +302,18 @@ a { color: inherit; }
 
 /* ---------- Placeholder tag ---------- */
 .ls-placeholder {
-  display: inline-block;
-  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--warn);
-  background: rgba(255,106,82,0.12);
-  border: 1px dashed rgba(255,106,82,0.5);
-  border-radius: 6px;
-  padding: 2px 8px;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
   margin-left: 8px;
   vertical-align: middle;
 }
+.ls-placeholder::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--warn); flex-shrink: 0; }
 
 /* ---------- Calculators ---------- */
 .ls-calc { background: var(--card); border: 1px solid var(--card-border); border-radius: 24px; padding: 30px 26px; }

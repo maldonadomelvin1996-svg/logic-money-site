@@ -93,6 +93,48 @@
     });
   });
 
+  /* ---------- Highlights carousel: puntos que siguen el scroll horizontal ---------- */
+  document.querySelectorAll("[data-highlights-dots]").forEach(function (dotsEl) {
+    var scrollId = dotsEl.getAttribute("data-highlights-dots");
+    var scrollEl = document.getElementById(scrollId);
+    if (!scrollEl) return;
+    var cards = scrollEl.querySelectorAll(".ls-highlight-card");
+    cards.forEach(function (_, i) {
+      var dot = document.createElement("span");
+      dot.className = "ls-highlights-dot" + (i === 0 ? " ls-active" : "");
+      dotsEl.appendChild(dot);
+    });
+    var dots = dotsEl.querySelectorAll(".ls-highlights-dot");
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var idx = Array.prototype.indexOf.call(cards, entry.target);
+            dots.forEach(function (d, i) { d.classList.toggle("ls-active", i === idx); });
+          }
+        });
+      }, { root: scrollEl, threshold: 0.6 });
+      cards.forEach(function (c) { io.observe(c); });
+    }
+  });
+
+  /* ---------- Parallax sutil del "producto" flotando en el hero ---------- */
+  var heroProduct = document.querySelector(".ls-hero-product-wrap");
+  if (heroProduct && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var ticking = false;
+    function updateParallax() {
+      var y = window.scrollY;
+      var limit = window.innerHeight || 800;
+      if (y < limit) {
+        heroProduct.style.transform = "translateY(" + Math.min(y * 0.12, 70) + "px)";
+      }
+      ticking = false;
+    }
+    window.addEventListener("scroll", function () {
+      if (!ticking) { requestAnimationFrame(updateParallax); ticking = true; }
+    }, { passive: true });
+  }
+
   /* ---------- Formato de moneda ---------- */
   function money(n) {
     if (!isFinite(n)) return "—";
