@@ -215,37 +215,68 @@ a { color: inherit; }
 .ls-btn-block { width: 100%; }
 
 /* ---------- Two big category tiles ---------- */
-/* ---------- Editorial feature block (texto + imagen oversized, estilo Apple) ---------- */
-.ls-editorial { display: flex; flex-direction: column; gap: 56px; }
-.ls-editorial-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 36px;
-  align-items: center;
-}
-@media (min-width: 820px) { .ls-editorial-row { grid-template-columns: 1fr 1fr; gap: 50px; } }
-.ls-editorial-row-reverse .ls-editorial-media { order: -1; }
-@media (min-width: 820px) { .ls-editorial-row-reverse .ls-editorial-media { order: 2; } }
+/* ---------- Split screen "determinante" (home): dos categorías, mitad y mitad,
+   material flotante sin tarjetas, estilo portada de revista. ---------- */
+.ls-split { display: flex; flex-direction: column; min-height: 100vh; }
+@media (min-width: 820px) { .ls-split { flex-direction: row; } }
 
-.ls-editorial-tag { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); margin-bottom: 14px; }
-.ls-editorial-title { font-size: clamp(28px, 4.2vw, 42px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 16px; }
-.ls-editorial-desc { font-size: 16px; color: var(--text-mid); line-height: 1.6; letter-spacing: -0.008em; margin-bottom: 26px; max-width: 440px; }
-
-.ls-editorial-media {
+.ls-split-half {
+  position: relative;
+  flex: 1 1 50%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 260px;
-  border-radius: 28px;
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  position: relative;
+  text-align: center;
+  padding: 72px 28px;
+  min-height: 62vh;
   overflow: hidden;
 }
-.ls-editorial-glyph { font-size: 120px; line-height: 1; filter: drop-shadow(0 18px 24px rgba(0,0,0,0.5)); }
-@media (min-width: 640px) { .ls-editorial-glyph { font-size: 160px; } }
-.ls-editorial-asesoria { border-top: 4px solid var(--gold); }
-.ls-editorial-educacion { border-top: 4px solid var(--teal); }
+@media (min-width: 820px) { .ls-split-half { min-height: 100vh; padding: 60px 48px; } }
+
+.ls-split-asesoria { background: radial-gradient(circle at 50% 15%, rgba(231,166,60,0.1), transparent 60%); }
+.ls-split-educacion {
+  background: radial-gradient(circle at 50% 15%, rgba(47,214,217,0.08), transparent 60%);
+  border-top: 1px solid var(--border);
+}
+@media (min-width: 820px) { .ls-split-educacion { border-top: none; border-left: 1px solid var(--border); } }
+
+.ls-split-art { margin-bottom: 36px; }
+.ls-split-glyph { font-size: 110px; display: block; line-height: 1; filter: drop-shadow(0 22px 26px rgba(0,0,0,0.5)); }
+@media (min-width: 640px) { .ls-split-glyph { font-size: 150px; } }
+
+.ls-split-collage { position: relative; width: 240px; height: 150px; }
+@media (min-width: 640px) { .ls-split-collage { width: 320px; height: 190px; } }
+.ls-split-collage-img {
+  position: absolute;
+  width: 72%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 20px rgba(0,0,0,0.55));
+}
+.ls-split-collage-1 { top: 0; left: 0; transform: rotate(-9deg); z-index: 1; }
+.ls-split-collage-2 { top: 18%; left: 16%; transform: rotate(4deg); z-index: 2; }
+.ls-split-collage-3 { top: 36%; left: 30%; transform: rotate(-4deg); z-index: 3; }
+
+.ls-split-title { font-size: clamp(26px, 3.6vw, 38px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin: 10px 0 12px; }
+.ls-split-desc { font-size: 15.5px; color: var(--text-mid); line-height: 1.55; letter-spacing: -0.008em; max-width: 360px; margin: 0 0 28px; }
+
+.ls-split-actions { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.ls-split-pills { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.ls-split-pill {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  padding: 11px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  transition: border-color .15s ease, background .15s ease;
+}
+.ls-split-pill:hover { background: rgba(255,255,255,0.05); border-color: var(--teal); }
+.ls-split-action { position: relative; z-index: 2; }
+
+.ls-split-hit { position: absolute; inset: 0; z-index: 1; }
 
 /* ---------- Highlights carousel (banda mist, estilo Apple) ---------- */
 .ls-highlights-scroll {
