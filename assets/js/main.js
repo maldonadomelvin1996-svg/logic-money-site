@@ -118,6 +118,23 @@
     }
   });
 
+  /* ---------- Inclinación 3D del material flotante al mover el cursor ---------- */
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && window.matchMedia("(hover: hover)").matches) {
+    document.querySelectorAll(".ls-split-art").forEach(function (art) {
+      var half = art.closest(".ls-split-half");
+      if (!half) return;
+      half.addEventListener("mousemove", function (e) {
+        var rect = half.getBoundingClientRect();
+        var relX = (e.clientX - rect.left) / rect.width - 0.5;
+        var relY = (e.clientY - rect.top) / rect.height - 0.5;
+        art.style.transform = "rotateY(" + (relX * 16).toFixed(2) + "deg) rotateX(" + (relY * -16).toFixed(2) + "deg)";
+      });
+      half.addEventListener("mouseleave", function () {
+        art.style.transform = "";
+      });
+    });
+  }
+
   /* ---------- Parallax sutil del "producto" flotando en el hero ---------- */
   var heroProduct = document.querySelector(".ls-hero-product-wrap");
   if (heroProduct && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
