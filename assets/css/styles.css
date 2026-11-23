@@ -562,6 +562,15 @@ a { color: inherit; }
   line-height: 1.6;
   padding: 30px;
 }
+.ls-video-embed {
+  margin-top: 28px;
+  aspect-ratio: 16/9;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #000;
+}
+.ls-video-embed iframe { width: 100%; height: 100%; border: none; display: block; }
 .ls-video-placeholder-icon {
   width: 56px; height: 56px;
   margin: 0 auto 16px;
