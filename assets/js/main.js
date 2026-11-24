@@ -93,24 +93,6 @@
     });
   });
 
-  /* ---------- Video facade: carga el reproductor pesado de YouTube solo al dar play ---------- */
-  document.querySelectorAll("[data-yt-facade]").forEach(function (facade) {
-    facade.addEventListener("click", function () {
-      var videoId = facade.getAttribute("data-yt-facade");
-      var title = facade.getAttribute("data-yt-title") || "Video";
-      var iframe = document.createElement("iframe");
-      iframe.src = "https://www.youtube-nocookie.com/embed/" + videoId + "?autoplay=1";
-      iframe.title = title;
-      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-      iframe.allowFullscreen = true;
-      var wrap = document.createElement("div");
-      wrap.className = "ls-video-embed";
-      wrap.style.marginTop = "0";
-      wrap.appendChild(iframe);
-      facade.replaceWith(wrap);
-    });
-  });
-
   /* ---------- Highlights carousel: puntos que siguen el scroll horizontal ---------- */
   document.querySelectorAll("[data-highlights-dots]").forEach(function (dotsEl) {
     var scrollId = dotsEl.getAttribute("data-highlights-dots");

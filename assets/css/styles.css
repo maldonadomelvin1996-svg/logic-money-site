@@ -571,45 +571,6 @@ a { color: inherit; }
   background: #000;
 }
 .ls-video-embed iframe { width: 100%; height: 100%; border: none; display: block; }
-
-/* ---------- Video facade: solo una miniatura liviana hasta que le des play
-   (el reproductor pesado de YouTube no carga hasta el clic) ---------- */
-.ls-video-facade {
-  margin-top: 28px;
-  aspect-ratio: 16/9;
-  width: 100%;
-  border-radius: 20px;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  background-color: #000;
-  position: relative;
-  cursor: pointer;
-  border: none;
-  padding: 0;
-  display: block;
-}
-.ls-video-facade::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.28);
-  transition: background .15s ease;
-}
-.ls-video-facade:hover::after { background: rgba(0,0,0,0.4); }
-.ls-video-facade-play {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 72px; height: 72px;
-  border-radius: 50%;
-  background: var(--gold);
-  color: #1A1200;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 26px;
-  box-shadow: 0 10px 30px -6px rgba(231,166,60,0.6);
-  z-index: 1;
-}
 .ls-video-placeholder-icon {
   width: 56px; height: 56px;
   margin: 0 auto 16px;
